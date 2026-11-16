@@ -12,7 +12,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Great+Vibes&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,600;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=10" />
+  <link rel="stylesheet" href="styles.css?v=11" />
 </head>
 
 <body class="doors-locked">
@@ -22,51 +22,12 @@
 
   <!-- Opening Sage Green Doors Overlay (Reference 1.jpg) -->
   <div id="door-overlay" class="door-overlay" role="button" tabindex="0" aria-label="Tap to open wedding invitation">
-    <div class="door-panel door-left">
-      <div class="wood-grain"></div>
-      <div class="door-molding"></div>
-    </div>
-    <div class="door-panel door-right">
-      <div class="wood-grain"></div>
-      <div class="door-molding"></div>
-    </div>
+    <div class="door-panel door-left"></div>
+    <div class="door-panel door-right"></div>
 
-    <!-- Quick Font Style Switcher for J&A Monogram (Preview Bar) -->
-    <div class="monogram-style-bar" id="monogram-style-bar" onclick="event.stopPropagation()" aria-label="Choose Monogram Font Style">
-      <span class="msb-label">Font:</span>
-      <button type="button" class="msb-btn active" data-style="cinzel" title="Royal Seal (Cinzel Decorative)">1. Royal Seal</button>
-      <button type="button" class="msb-btn" data-style="alex" title="Flowing Calligraphy (Alex Brush)">2. Calligraphy</button>
-      <button type="button" class="msb-btn" data-style="pinyon" title="Pinyon Script">3. Pinyon Script</button>
-      <button type="button" class="msb-btn" data-style="playfair" title="Classic Serif (Playfair Display)">4. Classic Serif</button>
-    </div>
-
-    <!-- Ornate Crest Plaque with J & A Monogram -->
-    <div class="door-crest-wrap">
-      <div class="door-crest">
-        <svg class="crest-frame" viewBox="0 0 220 270" fill="none" xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true">
-          <!-- Outer scalloped cream plaque -->
-          <path
-            d="M110 8 C128 8 136 22 152 24 C172 26 188 38 190 58 C192 78 206 94 206 116 C206 132 198 135 208 135 C198 135 206 138 206 154 C206 176 192 192 190 212 C188 232 172 244 152 246 C136 248 128 262 110 262 C92 262 84 248 68 246 C48 244 32 232 30 212 C28 192 14 176 14 154 C14 138 22 135 12 135 C22 135 14 132 14 116 C14 94 28 78 30 58 C32 38 48 26 68 24 C84 22 92 8 110 8 Z"
-            fill="#FBF7E6" stroke="#D8C892" stroke-width="2.5" />
-          <!-- Inner gilded filigree border -->
-          <path
-            d="M110 20 C124 20 132 32 146 34 C162 36 176 46 178 63 C180 81 192 95 192 115 C192 128 186 135 194 135 C186 135 192 142 192 155 C192 175 180 189 178 207 C176 224 162 234 146 236 C132 238 124 250 110 250 C96 250 88 238 74 236 C58 234 44 224 42 207 C40 189 28 175 28 155 C28 142 34 135 26 135 C34 135 28 142 28 115 C28 95 40 81 42 63 C44 46 58 36 74 34 C88 32 96 20 110 20 Z"
-            fill="none" stroke="#B79A54" stroke-width="1.6" />
-          <!-- Pearl accents top & bottom -->
-          <circle cx="110" cy="24" r="3" fill="#FFFDF7" stroke="#D8C892" stroke-width="0.8" />
-          <circle cx="103" cy="27" r="2.2" fill="#FFFDF7" stroke="#D8C892" stroke-width="0.8" />
-          <circle cx="117" cy="27" r="2.2" fill="#FFFDF7" stroke="#D8C892" stroke-width="0.8" />
-          <circle cx="110" cy="246" r="3" fill="#FFFDF7" stroke="#D8C892" stroke-width="0.8" />
-          <circle cx="103" cy="243" r="2.2" fill="#FFFDF7" stroke="#D8C892" stroke-width="0.8" />
-          <circle cx="117" cy="243" r="2.2" fill="#FFFDF7" stroke="#D8C892" stroke-width="0.8" />
-        </svg>
-        <div class="crest-monogram style-cinzel" id="crest-monogram" aria-label="J and A">
-          <span class="mono-j">J</span>
-          <span class="mono-amp">&amp;</span>
-          <span class="mono-a">A</span>
-        </div>
-      </div>
+    <!-- Minimalist Circular Gold Monogram (J & A) -->
+    <div class="door-crest-wrap door-monogram-wrap" aria-label="Jobin and Amitha Monogram">
+      <img src="assets/door-monogram.png?v=1" alt="Jobin &amp; Amitha Monogram" class="door-monogram-img" />
     </div>
 
     <div class="tap-to-open">

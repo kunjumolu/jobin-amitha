@@ -4,7 +4,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initDoors();
-  initMonogramSwitcher();
   initScrollReveal();
   initDressCodeModal();
   initCalendarDownload();
@@ -15,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* --------------------------------------------------------------------------
-   1. Opening Sage Green Doors & Monogram Switcher
+   1. Opening Sage Green Doors
    -------------------------------------------------------------------------- */
 let musicController = null;
 
@@ -44,32 +43,6 @@ function initDoors() {
       e.preventDefault();
       openDoors();
     }
-  });
-}
-
-function initMonogramSwitcher() {
-  const bar = document.getElementById('monogram-style-bar');
-  const monogram = document.getElementById('crest-monogram');
-  if (!bar || !monogram) return;
-
-  // Restore saved choice if previously picked
-  const savedStyle = localStorage.getItem('ja_monogram_style');
-  if (savedStyle) {
-    monogram.className = `crest-monogram style-${savedStyle}`;
-    bar.querySelectorAll('.msb-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.style === savedStyle);
-    });
-  }
-
-  bar.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const btn = e.target.closest('.msb-btn');
-    if (!btn || !btn.dataset.style) return;
-    const style = btn.dataset.style;
-    monogram.className = `crest-monogram style-${style}`;
-    bar.querySelectorAll('.msb-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    localStorage.setItem('ja_monogram_style', style);
   });
 }
 
