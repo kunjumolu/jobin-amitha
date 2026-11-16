@@ -10,9 +10,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Great+Vibes&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,600;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=9" />
+  <link rel="stylesheet" href="styles.css?v=10" />
 </head>
 
 <body class="doors-locked">
@@ -31,7 +31,16 @@
       <div class="door-molding"></div>
     </div>
 
-    <!-- Ornate Crest Plaque with R & J Monogram -->
+    <!-- Quick Font Style Switcher for J&A Monogram (Preview Bar) -->
+    <div class="monogram-style-bar" id="monogram-style-bar" onclick="event.stopPropagation()" aria-label="Choose Monogram Font Style">
+      <span class="msb-label">Font:</span>
+      <button type="button" class="msb-btn active" data-style="cinzel" title="Royal Seal (Cinzel Decorative)">1. Royal Seal</button>
+      <button type="button" class="msb-btn" data-style="alex" title="Flowing Calligraphy (Alex Brush)">2. Calligraphy</button>
+      <button type="button" class="msb-btn" data-style="pinyon" title="Pinyon Script">3. Pinyon Script</button>
+      <button type="button" class="msb-btn" data-style="playfair" title="Classic Serif (Playfair Display)">4. Classic Serif</button>
+    </div>
+
+    <!-- Ornate Crest Plaque with J & A Monogram -->
     <div class="door-crest-wrap">
       <div class="door-crest">
         <svg class="crest-frame" viewBox="0 0 220 270" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +61,7 @@
           <circle cx="103" cy="243" r="2.2" fill="#FFFDF7" stroke="#D8C892" stroke-width="0.8" />
           <circle cx="117" cy="243" r="2.2" fill="#FFFDF7" stroke="#D8C892" stroke-width="0.8" />
         </svg>
-        <div class="crest-monogram" aria-label="J and A">
+        <div class="crest-monogram style-cinzel" id="crest-monogram" aria-label="J and A">
           <span class="mono-j">J</span>
           <span class="mono-amp">&amp;</span>
           <span class="mono-a">A</span>

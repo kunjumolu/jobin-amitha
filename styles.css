@@ -163,32 +163,166 @@ body.doors-locked {
   height: 100%;
 }
 
+/* Quick Monogram Style Switcher Bar */
+.monogram-style-bar {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(26, 38, 23, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 5px 12px;
+  border-radius: 30px;
+  border: 1px solid rgba(214, 192, 128, 0.38);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  max-width: 95vw;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.msb-label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #e5ce7a;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-right: 2px;
+}
+
+.msb-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(214, 192, 128, 0.25);
+  color: #faf6e5;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 4px 9px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.msb-btn:hover {
+  background: rgba(214, 192, 128, 0.25);
+  border-color: #d6c080;
+}
+
+.msb-btn.active {
+  background: #b4964c;
+  color: #172415;
+  font-weight: 600;
+  border-color: #f3e4a8;
+  box-shadow: 0 2px 8px rgba(180, 150, 76, 0.45);
+}
+
+.door-overlay.is-opening .monogram-style-bar {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
 .crest-monogram {
   position: relative;
   z-index: 2;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: center;
-  gap: 2px;
-  font-family: var(--font-script);
   color: #a98b43;
   text-shadow:
     0 1px 0 rgba(255, 255, 255, 0.85),
     0 2px 6px rgba(92, 72, 26, 0.28);
   user-select: none;
+  transition: all 0.25s ease;
 }
 
-.mono-r,
-.mono-a,
-.mono-j {
-  font-size: 4.1rem;
+/* Style 1: Royal Seal (Cinzel Decorative) — Default */
+.crest-monogram,
+.crest-monogram.style-cinzel {
+  font-family: 'Cinzel Decorative', 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+  gap: 5px;
+}
+.crest-monogram .mono-j,
+.crest-monogram .mono-a,
+.crest-monogram.style-cinzel .mono-j,
+.crest-monogram.style-cinzel .mono-a {
+  font-size: 3.35rem;
+  font-weight: 700;
   line-height: 1;
+  letter-spacing: 0.03em;
+}
+.crest-monogram .mono-amp,
+.crest-monogram.style-cinzel .mono-amp {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 1.45rem;
+  color: var(--sage-mid);
+  margin: 0 3px;
 }
 
-.mono-amp {
-  font-family: var(--font-serif);
+/* Style 2: Flowing Calligraphy (Alex Brush) */
+.crest-monogram.style-alex {
+  font-family: 'Alex Brush', cursive;
+  gap: 2px;
+}
+.crest-monogram.style-alex .mono-j,
+.crest-monogram.style-alex .mono-a {
+  font-size: 4.1rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: normal;
+}
+.crest-monogram.style-alex .mono-amp {
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-style: italic;
-  font-size: 1.55rem;
+  font-size: 1.45rem;
+  color: var(--sage-mid);
+  margin: 0 2px;
+}
+
+/* Style 3: Aristocratic French Script (Pinyon Script) */
+.crest-monogram.style-pinyon {
+  font-family: 'Pinyon Script', cursive;
+  gap: 1px;
+}
+.crest-monogram.style-pinyon .mono-j,
+.crest-monogram.style-pinyon .mono-a {
+  font-size: 4.6rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: normal;
+}
+.crest-monogram.style-pinyon .mono-amp {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--sage-mid);
+  margin: 0 1px;
+}
+
+/* Style 4: High-Fashion Classic Serif (Playfair Display) */
+.crest-monogram.style-playfair {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  gap: 5px;
+}
+.crest-monogram.style-playfair .mono-j,
+.crest-monogram.style-playfair .mono-a {
+  font-size: 3.5rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+.crest-monogram.style-playfair .mono-amp {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 1.45rem;
   color: var(--sage-mid);
   margin: 0 2px;
 }
