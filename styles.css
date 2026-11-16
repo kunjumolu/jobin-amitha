@@ -196,30 +196,10 @@ body.doors-locked {
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 0.95rem;
+  line-height: 1.4;
   color: #e5ce7a;
   letter-spacing: 0.05em;
   text-shadow: 0 1px 4px rgba(20, 32, 18, 0.5);
-}
-
-.tap-to-open span {
-  display: block;
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.32em;
-  text-shadow: 0 2px 8px rgba(24, 36, 21, 0.5);
-  animation: pulseOpacity 2.2s ease-in-out infinite;
-}
-
-.tap-to-open small {
-  display: block;
-  margin-top: 8px;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--pale-yellow);
-  letter-spacing: 0.04em;
-  text-shadow: 0 1px 6px rgba(24, 36, 21, 0.45);
 }
 
 /* ==========================================================================
