@@ -190,6 +190,32 @@ body.doors-locked {
   animation: pulseOpacity 2.2s ease-in-out infinite;
 }
 
+/* Keep the opening door screen usable on small and short displays. */
+@media (max-width: 600px), (max-height: 640px) {
+  body.doors-locked {
+    height: 100dvh;
+  }
+
+  .door-monogram-img {
+    width: min(220px, 54vw, 42vh);
+    height: auto;
+  }
+
+  .tap-to-open {
+    bottom: max(24px, env(safe-area-inset-bottom));
+    width: calc(100% - 32px);
+  }
+
+  .tap-to-open span {
+    font-size: clamp(0.58rem, 2.4vw, 0.76rem);
+    letter-spacing: clamp(0.16em, 1.4vw, 0.38em);
+  }
+
+  .tap-to-open small {
+    font-size: clamp(0.8rem, 3.8vw, 0.95rem);
+  }
+}
+
 .tap-to-open small {
   display: block;
   margin-top: 8px;
@@ -1631,209 +1657,6 @@ body.doors-locked {
 }
 
 /* ==========================================================================
-   RESPONSIVE LAYOUT
-   ========================================================================== */
-html,
-body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: clip;
-}
-
-.card-stage {
-  min-width: 0;
-  padding-inline: clamp(0px, 3vw, 32px);
-}
-
-.card-container,
-.card-section,
-.hero-artwork-wrap,
-.scripture-frame-wrap,
-.couple-embroidery-wrap {
-  min-width: 0;
-}
-
-img,
-svg,
-canvas {
-  max-width: 100%;
-}
-
-@media (min-width: 900px) {
-  .card-stage {
-    padding-block: 36px;
-  }
-
-  .card-container {
-    max-width: 520px;
-  }
-}
-
-@media (max-width: 640px) {
-  .door-monogram-img {
-    width: min(220px, 58vw);
-    height: auto;
-  }
-
-  .tap-to-open {
-    bottom: max(28px, env(safe-area-inset-bottom));
-    width: calc(100% - 32px);
-  }
-
-  .tap-to-open span {
-    font-size: clamp(0.58rem, 2.2vw, 0.76rem);
-    letter-spacing: clamp(0.18em, 1.3vw, 0.32em);
-  }
-
-  .card-section,
-  .family-section,
-  .dresscode-section,
-  .savedate-section,
-  .venue-section,
-  .timeline-section,
-  .rsvp-section,
-  .compliments-section {
-    padding-inline: clamp(16px, 6vw, 28px);
-  }
-
-  .dresscode-grid {
-    gap: clamp(6px, 2vw, 10px);
-  }
-
-  .dresscode-card {
-    min-width: 0;
-    padding-inline: 4px;
-  }
-
-  .dc-group {
-    font-size: clamp(1.05rem, 4.8vw, 1.4rem);
-  }
-
-  .timeline-row {
-    grid-template-columns: 34% minmax(0, 1fr);
-  }
-
-  .timeline-line,
-  .timeline-moving-pearl {
-    left: 34%;
-  }
-
-  .timeline-info-col {
-    min-width: 0;
-    padding-left: clamp(14px, 4vw, 24px);
-  }
-
-  .tl-venue,
-  .venue-name,
-  .venue-place,
-  .rec-datetime {
-    overflow-wrap: anywhere;
-  }
-
-  .stitched-couple-names {
-    width: 94%;
-    gap: clamp(6px, 2vw, 14px);
-    font-size: clamp(1.08rem, 5.6vw, 1.85rem);
-    letter-spacing: clamp(0.08em, 1.2vw, 0.16em);
-  }
-
-  .stitched-amp {
-    font-size: clamp(1.45rem, 7vw, 2rem);
-  }
-
-  .modal-backdrop {
-    padding: max(12px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom));
-  }
-
-  .modal-sheet {
-    max-height: calc(100dvh - 24px);
-    overflow-y: auto;
-    padding-inline: clamp(18px, 6vw, 24px);
-  }
-
-  .sound-toggle {
-    right: max(12px, env(safe-area-inset-right));
-    bottom: max(12px, env(safe-area-inset-bottom));
-  }
-}
-
-@media (max-width: 380px) {
-  html {
-    font-size: 15px;
-  }
-
-  .card-stage {
-    padding-inline: 0;
-  }
-
-  .section-title {
-    font-size: clamp(1.8rem, 9vw, 2.25rem);
-  }
-
-  .dresscode-card {
-    gap: 8px;
-    padding-block: 18px;
-  }
-
-  .dc-group {
-    font-size: 1rem;
-  }
-
-  .dc-cta {
-    font-size: 0.52rem;
-    letter-spacing: 0.1em;
-  }
-
-  .timeline-row {
-    grid-template-columns: 31% minmax(0, 1fr);
-  }
-
-  .timeline-line,
-  .timeline-moving-pearl {
-    left: 31%;
-  }
-
-  .timeline-info-col {
-    padding-left: 12px;
-  }
-
-  .timeline-wrapper {
-    gap: 42px;
-  }
-
-  .stitched-couple-names {
-    width: 98%;
-    gap: 4px;
-    font-size: 1rem;
-  }
-
-  .stitched-amp {
-    font-size: 1.35rem;
-  }
-
-  .palette-swatches {
-    gap: 8px;
-  }
-
-  .swatch-label {
-    font-size: 0.54rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* ==========================================================================
-   ANIMATIONS
-   ========================================================================== */
    ANIMATIONS
    ========================================================================== */
 @keyframes gentleFloat {
