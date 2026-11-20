@@ -12,7 +12,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Great+Vibes&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,600;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=13" />
+  <link rel="stylesheet" href="styles.css?v=14" />
 </head>
 
 <body class="doors-locked">
@@ -467,26 +467,41 @@
           Please let us know if you'll be joining us on our special day!
         </h2>
         <div class="gold-divider"></div>
-        <p class="rsvp-question">Will you be joining us?</p>
-
-        <div class="rsvp-options-wrap">
-          <div class="rsvp-options">
-            <label class="rsvp-option-card" for="opt-coming">
-              <input type="radio" id="opt-coming" name="attendance" value="coming" checked />
-              <span class="radio-ring"></span>
-              <span class="option-text">I will be coming</span>
-            </label>
-            <label class="rsvp-option-card" for="opt-not-coming">
-              <input type="radio" id="opt-not-coming" name="attendance" value="not-coming" />
-              <span class="radio-ring"></span>
-              <span class="option-text">I won't be able to make it</span>
-            </label>
+        <form id="rsvp-form" class="rsvp-form" novalidate>
+          <!-- Name Field at Top -->
+          <div class="rsvp-input-group">
+            <label for="rsvp-name" class="rsvp-label">Your Name</label>
+            <input type="text" id="rsvp-name" name="name" class="rsvp-input" placeholder="Enter your full name" required autocomplete="name" />
           </div>
 
-          <div class="rsvp-note-badge" id="rsvp-note-badge">
-            <p id="rsvp-note-text">We look forward to celebrating with you! ✨</p>
+          <p class="rsvp-question">Will you be joining us?</p>
+
+          <div class="rsvp-options-wrap">
+            <div class="rsvp-options">
+              <label class="rsvp-option-card" for="opt-coming">
+                <input type="radio" id="opt-coming" name="attendance" value="coming" checked />
+                <span class="radio-ring"></span>
+                <span class="option-text">I will be coming</span>
+              </label>
+              <label class="rsvp-option-card" for="opt-not-coming">
+                <input type="radio" id="opt-not-coming" name="attendance" value="not-coming" />
+                <span class="radio-ring"></span>
+                <span class="option-text">I won't be able to make it</span>
+              </label>
+            </div>
+
+            <div class="rsvp-note-badge" id="rsvp-note-badge">
+              <p id="rsvp-note-text">We look forward to celebrating with you! ✨</p>
+            </div>
+
+            <button type="submit" id="rsvp-submit-btn" class="rsvp-submit-btn">
+              <span class="rsvp-btn-text">CONFIRM RSVP</span>
+              <span class="rsvp-spinner" aria-hidden="true"></span>
+            </button>
+
+            <div id="rsvp-status" class="rsvp-status-msg" aria-live="polite"></div>
           </div>
-        </div>
+        </form>
       </section>
 
       <!-- SECTION 9: FOOTER (Reference 11.jpg) -->
@@ -524,7 +539,7 @@
   </button>
 
 
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=7"></script>
 </body>
 
 </html>

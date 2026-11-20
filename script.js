@@ -215,15 +215,23 @@ function initCalendarDownload() {
 }
 
 /* --------------------------------------------------------------------------
-   5. Interactive RSVP Options
+   5. Interactive RSVP Options & Google Sheets Integration
    -------------------------------------------------------------------------- */
-function initRsvpForm() {
-  const container = document.querySelector('.rsvp-options-wrap');
-  if (!container) return;
+// NOTE: Paste your deployed Google Apps Script Web App URL below:
+const GOOGLE_SCRIPT_URL = '';
 
-  const radios = container.querySelectorAll('input[name="attendance"]');
+function initRsvpForm() {
+  const form = document.getElementById('rsvp-form');
+  if (!form) return;
+
+  const nameInput = document.getElementById('rsvp-name');
+  const radios = form.querySelectorAll('input[name="attendance"]');
   const noteText = document.getElementById('rsvp-note-text');
-  const STORAGE_KEY = 'jobin_amitha_rsvp_choice';
+  const submitBtn = document.getElementById('rsvp-submit-btn');
+  const statusEl = document.getElementById('rsvp-status');
+
+  const STORAGE_NAME_KEY = 'jobin_amitha_rsvp_name';
+  const STORAGE_CHOICE_KEY = 'jobin_amitha_rsvp_choice';
 
   const updateMessage = (value) => {
     if (!noteText) return;
@@ -234,25 +242,114 @@ function initRsvpForm() {
     }
   };
 
-  radios.forEach((radio) => {
-    radio.addEventListener('change', () => {
-      updateMessage(radio.value);
-      try {
-        localStorage.setItem(STORAGE_KEY, radio.value);
-      } catch {}
-    });
-  });
-
+  // Restore saved details from previous visit
   try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      const matchRadio = container.querySelector(`input[name="attendance"][value="${saved}"]`);
+    const savedName = localStorage.getItem(STORAGE_NAME_KEY);
+    if (savedName && nameInput) {
+      nameInput.value = savedName;
+    }
+    const savedChoice = localStorage.getItem(STORAGE_CHOICE_KEY);
+    if (savedChoice) {
+      const matchRadio = form.querySelector(`input[name="attendance"][value="${savedChoice}"]`);
       if (matchRadio) {
         matchRadio.checked = true;
-        updateMessage(saved);
+        updateMessage(savedChoice);
       }
     }
   } catch {}
+
+  // Radio button change listener
+  radios.forEach((radio) => {
+    radio.addEventListener('change', () => {
+      updateMessage(radio.value);
+    });
+  });
+
+  // Clear error highlight on input typing
+  if (nameInput) {
+    nameInput.addEventListener('input', () => {
+      nameInput.classList.remove('input-error');
+      if (statusEl && statusEl.classList.contains('is-error')) {
+        statusEl.className = 'rsvp-status-msg';
+        statusEl.textContent = '';
+      }
+    });
+  }
+
+  // Handle Form Submission
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = nameInput ? nameInput.value.trim() : '';
+    if (!name) {
+      if (nameInput) {
+        nameInput.classList.add('input-error');
+        nameInput.focus();
+      }
+      showStatus('Please enter your name to confirm your RSVP.', 'error');
+      return;
+    }
+
+    const selectedRadio = form.querySelector('input[name="attendance"]:checked');
+    const attendanceValue = selectedRadio ? selectedRadio.value : 'coming';
+    const attendanceLabel = attendanceValue === 'coming' ? 'I will be coming' : "I won't be able to make it";
+
+    // Set Loading State
+    setLoading(true);
+
+    const payload = {
+      timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+      name: name,
+      attendance: attendanceLabel
+    };
+
+    try {
+      if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL.trim() !== '') {
+        // Send to Google Sheets via Apps Script Web App
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(payload)
+        });
+      }
+
+      // Save locally
+      try {
+        localStorage.setItem(STORAGE_NAME_KEY, name);
+        localStorage.setItem(STORAGE_CHOICE_KEY, attendanceValue);
+      } catch {}
+
+      if (attendanceValue === 'coming') {
+        showStatus(`Thank you, ${name}! Your RSVP has been confirmed. We can't wait to celebrate with you! ✨`, 'success');
+      } else {
+        showStatus(`Thank you, ${name}. Your response has been recorded. You will be dearly missed! 🤍`, 'success');
+      }
+    } catch (err) {
+      console.error('RSVP submission error:', err);
+      showStatus('Something went wrong. Please try again or let us know directly.', 'error');
+    } finally {
+      setLoading(false);
+    }
+  });
+
+  function setLoading(isLoading) {
+    if (!submitBtn) return;
+    submitBtn.disabled = isLoading;
+    if (isLoading) {
+      submitBtn.classList.add('is-loading');
+    } else {
+      submitBtn.classList.remove('is-loading');
+    }
+  }
+
+  function showStatus(msg, type) {
+    if (!statusEl) return;
+    statusEl.textContent = msg;
+    statusEl.className = `rsvp-status-msg is-visible is-${type}`;
+  }
 }
 
 /* --------------------------------------------------------------------------
