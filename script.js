@@ -217,8 +217,8 @@ function initCalendarDownload() {
 /* --------------------------------------------------------------------------
    5. Interactive RSVP Options & Google Sheets Integration
    -------------------------------------------------------------------------- */
-// NOTE: Paste your deployed Google Apps Script Web App URL below:
-const GOOGLE_SCRIPT_URL = '';
+// Google Apps Script Web App URL for Sheet Integration:
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxmoX2geYzOX0a6TBQwFk5RQ30Tmy6WEeGNvmLzXKOODxU9kywXkTIXKayRrbYbURg/exec';
 
 function initRsvpForm() {
   const form = document.getElementById('rsvp-form');
